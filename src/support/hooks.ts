@@ -2,15 +2,12 @@ import { Before, After, BeforeAll, AfterAll, AfterStep } from '@cucumber/cucumbe
 import { chromium, Browser, request } from 'playwright';
 import { mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import reporter from 'cucumber-html-reporter';
 import { World } from './world';
 
 let browser: Browser;
 
 const REPORTS_DIR = 'reports';
 const SCREENSHOTS_DIR = join(REPORTS_DIR, 'screenshots');
-const JSON_REPORT = join(REPORTS_DIR, 'cucumber-report.json');
-const HTML_REPORT = join(REPORTS_DIR, 'cucumber-report.html');
 
 BeforeAll(async () => {
   if (!existsSync(REPORTS_DIR)) {
@@ -53,16 +50,4 @@ AfterAll(async () => {
     await browser.close();
   }
 
-  reporter.generate({
-    theme: 'bootstrap',
-    jsonFile: JSON_REPORT,
-    output: HTML_REPORT,
-    reportSuiteAsScenarios: true,
-    launchReport: false,
-    metadata: {
-      browser: 'chromium',
-      device: 'local',
-      platform: `${process.platform} ${process.version}`
-    }
-  });
 });

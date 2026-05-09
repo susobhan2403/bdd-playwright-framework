@@ -4,12 +4,12 @@
   "description": "BDD test automation framework using Playwright with TypeScript and Cucumber",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js",
-    "test:smoke": "cucumber-js --tags '@smoke'",
-    "test:regression": "cucumber-js --tags '@regression'",
-    "test:ui": "cucumber-js --tags '@ui'",
-    "test:api": "cucumber-js --tags '@api'",
-    "test:headed": "cross-env HEADLESS=false cucumber-js",
+    "test": "cucumber-js && node scripts/generate-cucumber-report.js",
+    "test:smoke": "cucumber-js --tags '@smoke' && node scripts/generate-cucumber-report.js",
+    "test:regression": "cucumber-js --tags '@regression' && node scripts/generate-cucumber-report.js",
+    "test:ui": "cucumber-js --tags '@ui' && node scripts/generate-cucumber-report.js",
+    "test:api": "cucumber-js --tags '@api' && node scripts/generate-cucumber-report.js",
+    "test:headed": "cross-env HEADLESS=false cucumber-js && node scripts/generate-cucumber-report.js",
     "test:dry-run": "cucumber-js --dry-run",
     "typecheck": "tsc --noEmit",
     "generate:feature": "ts-node scripts/generate-feature-from-story.ts"
