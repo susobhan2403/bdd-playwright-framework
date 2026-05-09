@@ -39,7 +39,7 @@ AfterStep(async function (this: World, { pickleStep }) {
   const screenshotPath = join(SCREENSHOTS_DIR, fileName);
 
   const screenshot = await this.page.screenshot({ path: screenshotPath, fullPage: true });
-  await (this as any).attach(screenshot, 'image/png');
+  await this.attach(screenshot, 'image/png');
 });
 
 After(async function (this: World) {
