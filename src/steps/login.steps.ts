@@ -3,16 +3,22 @@ import { expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { SecureAreaPage } from '../pages/SecureAreaPage';
 import { World } from '../support/world';
+import config from '../config/env';
 
 Given('I am on the login page', async function (this: World) {
   const loginPage = new LoginPage(this.page);
-  const title =  await loginPage.getTitle();
+  const title = await loginPage.getTitle();
   expect(title).toContain('Test Login');
 });
 
-When('I login with username {string} and password {string}', async function (this: World, username: string, password: string) {
+When('I login with valid credentials from environment', async function (this: World) {
   const loginPage = new LoginPage(this.page);
-  await loginPage.login(username, password);
+  await loginPage.login(config.USERNAME, config.PASSWORD);
+});
+
+When('I login with invalid password from environment', async function (this: World) {
+  const loginPage = new LoginPage(this.page);
+  await loginPage.login(config.USERNAME, `${config.PASSWORD}_invalid`);
 });
 
 Then('I should see a flash message {string}', async function (this: World, expectedMessage: string) {

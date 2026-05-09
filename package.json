@@ -11,12 +11,14 @@
     "test:api": "cucumber-js --tags '@api'",
     "test:headed": "cross-env HEADLESS=false cucumber-js",
     "test:dry-run": "cucumber-js --dry-run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate:feature": "ts-node scripts/generate-feature-from-story.ts"
   },
   "dependencies": {
     "@cucumber/cucumber": "^9.0.0",
     "dotenv": "^16.0.0",
-    "playwright": "^1.30.0"
+    "playwright": "^1.30.0",
+    "cucumber-html-reporter": "^5.5.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
