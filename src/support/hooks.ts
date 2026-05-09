@@ -5,7 +5,7 @@ import { World } from './world';
 let browser: Browser;
 
 BeforeAll(async () => {
-  browser = await chromium.launch({ headless: process.env.HEADLESS === 'true' });
+  browser = await chromium.launch({ headless: process.env.HEADLESS === 'false' });
 });
 
 Before(async function (this: World) {

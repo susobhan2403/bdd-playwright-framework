@@ -4,15 +4,15 @@ import { BasePage } from './BasePage';
 export class LoginPage extends BasePage {
   private usernameInput = '#username';
   private passwordInput = '#password';
-  private loginButton = 'button[type="submit"]';
-  private flashMessage = '#flash';
+  private loginButton = '#submit';
+  private flashMessage = '.show';
 
   constructor(page: Page) {
     super(page);
   }
 
-  async navigateToLoginPage(): Promise<void> {
-    await this.navigateTo('/login');
+  async getTitle(): Promise<string> {
+    return (await this.page.title()) ?? '';
   }
 
   async login(username: string, password: string): Promise<void> {

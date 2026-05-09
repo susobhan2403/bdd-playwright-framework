@@ -2,7 +2,7 @@ import { Page } from 'playwright';
 import { BasePage } from './BasePage';
 
 export class SecureAreaPage extends BasePage {
-  private logoutButton = 'a[href="/logout"]';
+  private logoutButton = '//a[contains(text(), "Log out")]';
 
   constructor(page: Page) {
     super(page);

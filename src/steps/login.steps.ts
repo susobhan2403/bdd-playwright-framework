@@ -6,7 +6,8 @@ import { World } from '../support/world';
 
 Given('I am on the login page', async function (this: World) {
   const loginPage = new LoginPage(this.page);
-  await loginPage.navigateToLoginPage();
+  const title =  await loginPage.getTitle();
+  expect(title).toContain('Test Login');
 });
 
 When('I login with username {string} and password {string}', async function (this: World, username: string, password: string) {
