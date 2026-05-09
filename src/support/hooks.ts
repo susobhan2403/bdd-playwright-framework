@@ -37,6 +37,29 @@ AfterStep(async function (this: World, { pickleStep }) {
 
   const screenshot = await this.page.screenshot({ path: screenshotPath, fullPage: true });
   await this.attach(screenshot, 'image/png');
+
+  if (this.response) {
+    const responseHeaders = this.response.headers();
+    const responseBody = await this.response.text();
+    const formattedBody = (() => {
+      try {
+        return JSON.stringify(JSON.parse(responseBody), null, 2);
+      } catch {
+        return responseBody;
+      }
+    })();
+
+    const responseDetails = [
+      `API Response captured after step: ${pickleStep.text}`,
+      `URL: ${this.response.url()}`,
+      `Status: ${this.response.status()} ${this.response.statusText()}`,
+      `Headers: ${JSON.stringify(responseHeaders, null, 2)}`,
+      'Body:',
+      formattedBody,
+    ].join('\n');
+
+    await this.attach(responseDetails, 'text/plain');
+  }
 });
 
 After(async function (this: World) {
