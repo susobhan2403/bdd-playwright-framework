@@ -1,9 +1,17 @@
 import { Given, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { World } from '../support/world';
+import config from '../config/env';
+
+const buildApiUrl = (endpoint: string): string => {
+  const normalizedBaseUrl = config.API_BASE_URL.replace(/\/+$/, '');
+  const normalizedEndpoint = endpoint.replace(/^\/+/, '');
+
+  return `${normalizedBaseUrl}/${normalizedEndpoint}`;
+};
 
 Given('I send a GET request to {string}', async function (this: World, endpoint: string) {
-  this.response = await this.apiContext.get(endpoint);
+  this.response = await this.apiContext.get(buildApiUrl(endpoint));
 });
 
 Then('the response status code should be {int}', async function (this: World, expectedStatusCode: number) {
