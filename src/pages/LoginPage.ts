@@ -22,6 +22,6 @@ export class LoginPage extends BasePage {
   }
 
   async getFlashMessage(): Promise<string> {
-    return this.page.textContent(this.flashMessage);
+    return (await this.page.textContent(this.flashMessage)) ?? '';
   }
 }
