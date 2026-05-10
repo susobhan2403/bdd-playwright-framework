@@ -2,10 +2,10 @@ import { Page } from 'playwright';
 import { BasePage } from './BasePage';
 
 export class LoginPage extends BasePage {
-  private usernameInput = '#username';
+  private usernameInput = '#user-name';
   private passwordInput = '#password';
-  private loginButton = '#submit';
-  private flashMessage = '.show';
+  private loginButton = '#login-button';
+  private flashMessage = "//h3[contains(text(),'Epic sadface')]";
 
   constructor(page: Page) {
     super(page);

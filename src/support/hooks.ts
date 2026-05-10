@@ -17,7 +17,7 @@ BeforeAll(async () => {
     mkdirSync(SCREENSHOTS_DIR, { recursive: true });
   }
 
-  browser = await chromium.launch({ headless: process.env.HEADLESS !== 'false' });
+  browser = await chromium.launch({ headless: process.env.HEADLESS === 'false' });
 });
 
 Before(async function (this: World) {

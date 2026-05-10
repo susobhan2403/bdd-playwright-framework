@@ -10,9 +10,10 @@ Feature: Login functionality
   Scenario: Successful login with valid credentials
     Given I am on the login page
     When I login with valid credentials from environment
-    Then I should be redirected to the secure area
+    Then I should be redirected to the home page
+
 
   Scenario: Failed login with invalid credentials
     Given I am on the login page
     When I login with invalid password from environment
-    Then I should see a flash message "Your password is invalid!"
+    Then I should see a flash message "Username and password do not match"
